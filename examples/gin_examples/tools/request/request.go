@@ -19,7 +19,11 @@ type ReqApi interface {
 	Request() (*http.Response, error)
 }
 
-func (r Req) Request() (*http.Response, error) {
+func NewRequest() *Req {
+	return &Req{}
+}
+
+func (r *Req) Request() (*http.Response, error) {
 	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
 	httpClient := &http.Client{Timeout: r.Timeout, Transport: tr}
 
